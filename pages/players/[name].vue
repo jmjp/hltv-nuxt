@@ -11,6 +11,10 @@
             </div>
         </div>
     </div>
+    <div v-if="error" class="mx-auto flex flex-col justify-center items-center">
+        <label class="text-3xl font-semibold">Jogador não encontrado ou houve uma falha na busca</label>
+        <button @click="back" class="bg-navyblue px-4 py-2 rounded hover:bg-opacity-50">Voltar ao inicio</button>
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -20,4 +24,8 @@ onBeforeMount(() => {
     refresh()
 })
 const { data, error, refresh, pending } = await useFetch(`/api/players/${route.params.name}`);
+const back = () => {
+    const router = useRouter()
+    router.back()
+}
 </script>
