@@ -1,4 +1,4 @@
-import { e as _export_sfc, f as useHead, d as __nuxt_component_0$1 } from './server.mjs';
+import { f as _export_sfc, g as useHead, e as __nuxt_component_0$1 } from './server.mjs';
 import { mergeProps, withCtx, createTextVNode, toDisplayString, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderComponent } from 'vue/server-renderer';
 import 'ohmyfetch';
@@ -89,4 +89,4 @@ _sfc_main.setup = (props, ctx) => {
 const error404 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-07b7f6e4"]]);
 
 export { error404 as default };
-//# sourceMappingURL=error-404.02dad946.mjs.map
+//# sourceMappingURL=error-404.d5c25e25.mjs.map

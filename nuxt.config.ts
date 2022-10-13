@@ -1,7 +1,10 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss'],
-    nitro: {
-        preset: "netlify"
+    nitro:{
+        preset: 'netlify'
+    },
+    experimental:{
+        externalVue: true
     }
 })

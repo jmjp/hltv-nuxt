@@ -1,4 +1,4 @@
-import { e as _export_sfc, f as useHead } from './server.mjs';
+import { f as _export_sfc, g as useHead } from './server.mjs';
 import { mergeProps, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrInterpolate } from 'vue/server-renderer';
 import 'ohmyfetch';
@@ -68,4 +68,4 @@ _sfc_main.setup = (props, ctx) => {
 const error500 = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-73785db7"]]);
 
 export { error500 as default };
-//# sourceMappingURL=error-500.b26121ee.mjs.map
+//# sourceMappingURL=error-500.a41d70ed.mjs.map

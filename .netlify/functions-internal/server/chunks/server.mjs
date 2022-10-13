@@ -1,4 +1,4 @@
-import { getCurrentInstance, inject, computed, defineComponent, provide, h, Suspense, Transition, reactive, mergeProps, useSSRContext, ref, unref, defineAsyncComponent, resolveComponent, watchEffect, markRaw, shallowRef, createApp, toRef, isRef, onErrorCaptured, withCtx, createVNode } from 'vue';
+import { getCurrentInstance, inject, computed, defineComponent, provide, h, Suspense, Transition, reactive, mergeProps, useSSRContext, ref, unref, defineAsyncComponent, isRef, resolveComponent, watchEffect, markRaw, shallowRef, createApp, toRef, onErrorCaptured, withCtx, createVNode } from 'vue';
 import { $fetch } from 'ohmyfetch';
 import { joinURL, hasProtocol, isEqual, parseURL } from 'ufo';
 import { createHooks } from 'hookable';
@@ -872,17 +872,9 @@ const Script = defineComponent({
     charset: String,
     language: String
   },
-  setup: setupForUseMeta((props, { slots }) => {
-    var _a;
-    const script = { ...props };
-    const textContent = (((_a = slots.default) == null ? void 0 : _a.call(slots)) || []).filter(({ children }) => children).map(({ children }) => children).join("");
-    if (textContent) {
-      script.children = textContent;
-    }
-    return {
-      script: [script]
-    };
-  })
+  setup: setupForUseMeta((script) => ({
+    script: [script]
+  }))
 });
 const NoScript = defineComponent({
   name: "NoScript",
@@ -1165,9 +1157,9 @@ const Component = defineComponent({
     };
   }
 });
+const meta$6 = void 0;
 const meta$5 = void 0;
-const meta$4 = void 0;
-const _sfc_main$4 = /* @__PURE__ */ defineComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineComponent({
   __name: "indexCard",
   __ssrInlineRender: true,
   props: {
@@ -1182,17 +1174,17 @@ const _sfc_main$4 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/index/components/indexCard.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
 const indexCard = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$4
+  default: _sfc_main$5
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$3 = /* @__PURE__ */ defineComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineComponent({
   __name: "searchBox",
   __ssrInlineRender: true,
   setup(__props) {
@@ -1202,19 +1194,19 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const _sfc_setup$3 = _sfc_main$3.setup;
-_sfc_main$3.setup = (props, ctx) => {
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/index/components/searchBox.vue");
-  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
 const searchBox = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: _sfc_main$3
+  default: _sfc_main$4
 }, Symbol.toStringTag, { value: "Module" }));
+const meta$4 = void 0;
 const meta$3 = void 0;
-const meta$2 = void 0;
-const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+const _sfc_main$3 = /* @__PURE__ */ defineComponent({
   __name: "playerStatisticsCard",
   __ssrInlineRender: true,
   props: {
@@ -1234,6 +1226,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           return `${statistics[value]}%`;
         case "roundsContributed":
           return `${statistics[value]}%`;
+        case "rating":
+          return statistics[value].toFixed(2);
         default:
           return statistics[value];
       }
@@ -1241,22 +1235,58 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(_attrs)}><label class="text-3xl">Estatisticas</label><div class="flex gap-6 flex-wrap"><!--[-->`);
       ssrRenderList(unref(keyNames), (name) => {
-        _push(`<div><div class="w-32 h-28"><div class="capitalize font-bold">${ssrInterpolate(replaceByUppercase(name))}</div><div class="mx-auto p-2 bg-gradient-to-br from-purple-600 to-navyblue w-32 h-28 rounded-lg flex flex-col justify-center items-center"><div class="text-2xl font-semibold">${ssrInterpolate(givePercent(name))}</div></div></div></div>`);
+        _push(`<div><div class="w-32 h-28"><div class="capitalize font-bold truncate w-32">${ssrInterpolate(replaceByUppercase(name))}</div><div class="mx-auto p-2 bg-gradient-to-br from-purple-600 to-navyblue w-32 h-28 rounded-lg flex flex-col justify-center items-center"><div class="text-2xl font-semibold">${ssrInterpolate(givePercent(name))}</div></div></div></div>`);
       });
       _push(`<!--]--></div></div>`);
+    };
+  }
+});
+const _sfc_setup$3 = _sfc_main$3.setup;
+_sfc_main$3.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/players/components/playerStatisticsCard.vue");
+  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+};
+const playerStatisticsCard = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: _sfc_main$3
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$2 = /* @__PURE__ */ defineComponent({
+  __name: "playerInfoCard",
+  __ssrInlineRender: true,
+  props: {
+    player: Object
+  },
+  setup(__props) {
+    const props = __props;
+    const player = props.player;
+    const socials = ["instagram", "facebook", "twitter", "twitch"];
+    return (_ctx, _push, _parent, _attrs) => {
+      _push(`<!--[-->`);
+      ssrRenderList(socials, (social) => {
+        _push(`<div>`);
+        if (unref(player)[social] != null) {
+          _push(`<a target="_blank" class="capitalize"${ssrRenderAttr("href", unref(player)[social])}>${ssrInterpolate(social)}</a>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`</div>`);
+      });
+      _push(`<!--]-->`);
     };
   }
 });
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/players/components/playerStatisticsCard.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/players/components/playerInfoCard.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const playerStatisticsCard = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const playerInfoCard = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: _sfc_main$2
 }, Symbol.toStringTag, { value: "Module" }));
+const meta$2 = void 0;
 const meta$1 = void 0;
 const meta = void 0;
 const _routes = [
@@ -1265,9 +1295,8 @@ const _routes = [
     path: "//components/indexCard",
     file: "C:/Users/joaoz/Documents/projects/frontend/clutcher/pages/index/components/indexCard.vue",
     children: [],
-    meta: meta$5,
+    meta: meta$6,
     alias: [],
-    redirect: void 0,
     component: () => Promise.resolve().then(() => indexCard).then((m) => m.default || m)
   },
   {
@@ -1275,9 +1304,8 @@ const _routes = [
     path: "//components/searchBox",
     file: "C:/Users/joaoz/Documents/projects/frontend/clutcher/pages/index/components/searchBox.vue",
     children: [],
-    meta: meta$4,
+    meta: meta$5,
     alias: [],
-    redirect: void 0,
     component: () => Promise.resolve().then(() => searchBox).then((m) => m.default || m)
   },
   {
@@ -1285,19 +1313,17 @@ const _routes = [
     path: "/",
     file: "C:/Users/joaoz/Documents/projects/frontend/clutcher/pages/index/index.vue",
     children: [],
-    meta: meta$3,
+    meta: meta$4,
     alias: [],
-    redirect: void 0,
-    component: () => import('./index.e14fc5cb.mjs').then((m) => m.default || m)
+    component: () => import('./index.bd953de1.mjs').then((m) => m.default || m)
   },
   {
     name: "index-interfaces-playerLink",
     path: "//interfaces/playerLink",
     file: "C:/Users/joaoz/Documents/projects/frontend/clutcher/pages/index/interfaces/playerLink.ts",
     children: [],
-    meta: meta$2,
+    meta: meta$3,
     alias: [],
-    redirect: void 0,
     component: () => import('./playerLink.c6f98274.mjs').then((m) => m.default || m)
   },
   {
@@ -1305,10 +1331,18 @@ const _routes = [
     path: "/players/:name",
     file: "C:/Users/joaoz/Documents/projects/frontend/clutcher/pages/players/[name].vue",
     children: [],
+    meta: meta$2,
+    alias: [],
+    component: () => import('./_name_.276773d8.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "players-components-playerInfoCard",
+    path: "/players/components/playerInfoCard",
+    file: "C:/Users/joaoz/Documents/projects/frontend/clutcher/pages/players/components/playerInfoCard.vue",
+    children: [],
     meta: meta$1,
     alias: [],
-    redirect: void 0,
-    component: () => import('./_name_.31b3b460.mjs').then((m) => m.default || m)
+    component: () => Promise.resolve().then(() => playerInfoCard).then((m) => m.default || m)
   },
   {
     name: "players-components-playerStatisticsCard",
@@ -1317,7 +1351,6 @@ const _routes = [
     children: [],
     meta,
     alias: [],
-    redirect: void 0,
     component: () => Promise.resolve().then(() => playerStatisticsCard).then((m) => m.default || m)
   }
 ];
@@ -1467,7 +1500,7 @@ const _sfc_main$1 = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = defineAsyncComponent(() => import('./error-component.9c96db62.mjs').then((r) => r.default || r));
+    const ErrorComponent = defineAsyncComponent(() => import('./error-component.c3c9db34.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     provide("_route", useRoute());
     nuxtApp.hooks.callHookWith((hooks) => hooks.map((hook) => hook()), "vue:setup");
@@ -1500,7 +1533,7 @@ _sfc_main$1.setup = (props, ctx) => {
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const layouts = {
-  default: defineAsyncComponent(() => import('./default.fed6b0c8.mjs').then((m) => m.default || m))
+  default: defineAsyncComponent(() => import('./default.a633075b.mjs').then((m) => m.default || m))
 };
 const __nuxt_component_0 = defineComponent({
   props: {
@@ -1513,7 +1546,7 @@ const __nuxt_component_0 = defineComponent({
     const route = useRoute();
     return () => {
       var _a, _b, _c;
-      const layout = (_b = (_a = unref(props.name)) != null ? _a : route.meta.layout) != null ? _b : "default";
+      const layout = (_b = (_a = isRef(props.name) ? props.name.value : props.name) != null ? _a : route.meta.layout) != null ? _b : "default";
       const hasLayout = layout && layout in layouts;
       const transitionProps = (_c = route.meta.layoutTransition) != null ? _c : appLayoutTransition;
       return _wrapIf(Transition, hasLayout && transitionProps, {
@@ -1579,5 +1612,5 @@ const plugins = normalizePlugins(_plugins);
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { _sfc_main$3 as _, _sfc_main$4 as a, useRoute as b, _sfc_main$2 as c, __nuxt_component_0$1 as d, entry$1 as default, _export_sfc as e, useHead as f, useNuxtApp as u };
+export { _sfc_main$4 as _, _sfc_main$5 as a, useRoute as b, _sfc_main$3 as c, _sfc_main$2 as d, entry$1 as default, __nuxt_component_0$1 as e, _export_sfc as f, useHead as g, useNuxtApp as u };
 //# sourceMappingURL=server.mjs.map

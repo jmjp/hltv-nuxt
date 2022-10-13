@@ -5,17 +5,19 @@
             <label class="text-4xl font-bold font-heading capitalize">
                 {{ data.player.name }}
             </label>
-            <div class="grid grid-cols-2 gap-2">
-                <img class="w-96 h-96"
+            <div class="flex gap-6">
+                <img class="w-96 min-w-max rounded"
                     :src="data.player.image ?? 'https://www.hltv.org/img/static/player/player_silhouette.png'" />
                 <div>
-                    <PlayerStatisticsCard class="w-2/3" :statistics="data.player.statistics" />
+                    <PlayerStatisticsCard class="mb-10" :statistics="data.player.statistics" />
+                    <PlayerInfoCard :player="data.player" />
                 </div>
             </div>
         </div>
         <div v-if="error" class="mx-auto  mt-14 flex flex-col justify-center items-center">
             <label class="text-3xl font-semibold">Jogador não encontrado ou houve uma falha na busca</label>
-            <button @click="back" class="bg-navyblue mt-14 px-4 py-2 rounded hover:bg-opacity-50">Voltar ao inicio</button>
+            <button @click="back" class="bg-navyblue mt-14 px-4 py-2 rounded hover:bg-opacity-50">Voltar ao
+                inicio</button>
         </div>
         <div v-if="pending && !error" class="mx-auto mt-14 w-max" role="status">
             <svg class="w-20 h-20 text-navyblue animate-spin fill-white" viewBox="0 0 100 101" fill="none"
@@ -33,6 +35,7 @@
 
 <script setup lang="ts">
 import PlayerStatisticsCard from './components/playerStatisticsCard.vue';
+import PlayerInfoCard from './components/playerInfoCard.vue';
 const route = useRoute()
 onBeforeMount(() => {
     refresh()

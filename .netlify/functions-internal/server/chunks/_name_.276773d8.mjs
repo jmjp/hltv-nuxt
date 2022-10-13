@@ -1,5 +1,5 @@
-import { b as useRoute, c as _sfc_main$2, u as useNuxtApp } from './server.mjs';
-import { defineComponent, withAsyncContext, unref, useSSRContext, computed, ref, onServerPrefetch } from 'vue';
+import { b as useRoute, c as _sfc_main$3, d as _sfc_main$2, u as useNuxtApp } from './server.mjs';
+import { defineComponent, withAsyncContext, unref, useSSRContext, computed, isRef, ref, onServerPrefetch } from 'vue';
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderAttr, ssrRenderComponent } from 'vue/server-renderer';
 import 'ohmyfetch';
 import 'ufo';
@@ -121,7 +121,7 @@ function useFetch(request, arg1, arg2) {
     if (typeof r === "function") {
       r = r();
     }
-    return unref(r);
+    return isRef(r) ? r.value : r;
   });
   const {
     server,
@@ -131,7 +131,6 @@ function useFetch(request, arg1, arg2) {
     pick: pick2,
     watch,
     initialCache,
-    immediate,
     ...fetchOptions
   } = opts;
   const _fetchOptions = {
@@ -145,7 +144,6 @@ function useFetch(request, arg1, arg2) {
     transform,
     pick: pick2,
     initialCache,
-    immediate,
     watch: [
       _request,
       ...watch || []
@@ -167,10 +165,13 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       var _a;
       _push(`<div${ssrRenderAttrs(_attrs)}>`);
       if (!unref(pending)) {
-        _push(`<div class="md:mx-2 mx-auto px-4 pt-4 rounded mt-4 shadow-lg bg-gray-700 bg-opacity-40 backdrop-blur-lg"><label class="text-4xl font-bold font-heading capitalize">${ssrInterpolate(unref(data).player.name)}</label><div class="grid grid-cols-2 gap-2"><img class="w-96 h-96"${ssrRenderAttr("src", (_a = unref(data).player.image) != null ? _a : "https://www.hltv.org/img/static/player/player_silhouette.png")}><div>`);
-        _push(ssrRenderComponent(_sfc_main$2, {
-          class: "w-2/3",
+        _push(`<div class="md:mx-2 mx-auto px-4 pt-4 rounded mt-4 shadow-lg bg-gray-700 bg-opacity-40 backdrop-blur-lg"><label class="text-4xl font-bold font-heading capitalize">${ssrInterpolate(unref(data).player.name)}</label><div class="flex gap-6"><img class="w-96 min-w-max rounded"${ssrRenderAttr("src", (_a = unref(data).player.image) != null ? _a : "https://www.hltv.org/img/static/player/player_silhouette.png")}><div>`);
+        _push(ssrRenderComponent(_sfc_main$3, {
+          class: "mb-10",
           statistics: unref(data).player.statistics
+        }, null, _parent));
+        _push(ssrRenderComponent(_sfc_main$2, {
+          player: unref(data).player
         }, null, _parent));
         _push(`</div></div></div>`);
       } else {
@@ -198,4 +199,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=_name_.31b3b460.mjs.map
+//# sourceMappingURL=_name_.276773d8.mjs.map

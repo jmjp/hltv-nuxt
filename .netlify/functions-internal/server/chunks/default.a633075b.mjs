@@ -1,4 +1,4 @@
-import { e as _export_sfc, d as __nuxt_component_0$1 } from './server.mjs';
+import { f as _export_sfc, e as __nuxt_component_0$1 } from './server.mjs';
 import { useSSRContext, defineComponent, mergeProps, withCtx, createTextVNode, toDisplayString } from 'vue';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderList, ssrInterpolate, ssrRenderSlot } from 'vue/server-renderer';
 import 'ohmyfetch';
@@ -93,4 +93,4 @@ _sfc_main.setup = (props, ctx) => {
 const _default = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
 
 export { _default as default };
-//# sourceMappingURL=default.fed6b0c8.mjs.map
+//# sourceMappingURL=default.a633075b.mjs.map

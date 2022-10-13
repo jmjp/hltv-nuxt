@@ -4,7 +4,7 @@
         <div class="flex gap-6 flex-wrap">
             <div v-for="name in keyNames">
                 <div class="w-32 h-28">
-                    <div class="capitalize font-bold">{{ replaceByUppercase(name) }}</div>
+                    <div class="capitalize font-bold truncate w-32">{{ replaceByUppercase(name) }}</div>
                     <div
                         class="mx-auto p-2 bg-gradient-to-br from-purple-600 to-navyblue w-32 h-28 rounded-lg flex flex-col justify-center items-center">
                         <div class="text-2xl font-semibold">{{ givePercent(name) }}</div>
@@ -35,6 +35,8 @@ function givePercent(value: string) {
             return `${statistics[value]}%`
         case "roundsContributed":
             return `${statistics[value]}%`
+        case "rating":
+            return statistics[value].toFixed(2)
         default:
             return statistics[value];
     }

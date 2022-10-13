@@ -1,6 +1,6 @@
 import { defineComponent, mergeProps, withCtx, createVNode, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrRenderComponent, ssrRenderList, ssrRenderAttr } from 'vue/server-renderer';
-import { _ as _sfc_main$3, a as _sfc_main$4 } from './server.mjs';
+import { _ as _sfc_main$4, a as _sfc_main$5 } from './server.mjs';
 import 'ohmyfetch';
 import 'ufo';
 import 'hookable';
@@ -33,10 +33,10 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     ];
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({ class: "mx-auto mt-52 w-3/4" }, _attrs))}>`);
-      _push(ssrRenderComponent(_sfc_main$3, null, null, _parent));
+      _push(ssrRenderComponent(_sfc_main$4, null, null, _parent));
       _push(`<div class="flex flex-wrap mt-4 items-center justify-center"><!--[-->`);
       ssrRenderList(players, (player) => {
-        _push(ssrRenderComponent(_sfc_main$4, {
+        _push(ssrRenderComponent(_sfc_main$5, {
           title: player.name,
           path: `/players/${player.name}`
         }, {
@@ -67,4 +67,4 @@ _sfc_main.setup = (props, ctx) => {
 };
 
 export { _sfc_main as default };
-//# sourceMappingURL=index.e14fc5cb.mjs.map
+//# sourceMappingURL=index.bd953de1.mjs.map
