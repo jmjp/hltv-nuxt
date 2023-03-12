@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
     modules: ['@nuxtjs/tailwindcss'],
     nitro:{
-        preset: 'cloudflare'
+        preset: 'cloudflare_pages'
     },
     experimental:{
         externalVue: true
